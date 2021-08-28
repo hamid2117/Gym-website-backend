@@ -9,7 +9,7 @@
     "dev": "nodemon src/index.js",
     "data:import": "node src/seeder",
     "start": "node src/index.js",
-    "data:destroy": "node src/seeder -d",
+    "data:destroy": "node src/seeder -d"
   },
   "keywords": [],
   "author": "",
