@@ -9,7 +9,7 @@
     "dev": "nodemon src/index.js",
     "data:import": "node src/seeder",
     "start": "node src/index.js",
-    "data:destroy": "node src/seeder -d"
+    "data:destroy": "node src/seeder -d",
   },
   "keywords": [],
   "author": "",
@@ -29,6 +29,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "serve": "^12.0.0"
   }
 }
