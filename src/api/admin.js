@@ -22,6 +22,22 @@ router.get(
     }
   })
 )
+router.get(
+  '/trainer',
+  protect,
+  asyncHandler(async (req, res) => {
+    const user = await User.find({})
+    const trianer = user.filter((data) => {
+      return data.trainer === true
+    })
+    if (trianer) {
+      res.json(trianer)
+    } else {
+      res.status(404)
+      throw new Error('User not Found')
+    }
+  })
+)
 
 //*@desc Delete user by admin
 //*@Api GET /api/v1/user/:id
