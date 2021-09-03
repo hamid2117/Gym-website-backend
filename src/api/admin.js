@@ -50,7 +50,6 @@ router.delete(
 router.get(
   '/user/:id',
   protect,
-  admin,
   asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id).select('-passowrd')
 
@@ -64,7 +63,7 @@ router.get(
 )
 
 //*@desc admin user
-//*@Api Put /api/v1/user/:id/edit
+//*@Api Put /api/v1/user/:id
 //*@Access Admin
 
 router.put(
@@ -77,6 +76,7 @@ router.put(
       user.name = req.body.name || user.name
       user.email = req.body.email || user.email
       user.isAdmin = req.body.isAdmin
+      user.trainer = req.body.trainer
 
       const updatedUser = await user.save()
 

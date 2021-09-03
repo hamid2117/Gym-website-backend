@@ -62,6 +62,7 @@ router.get(
     }
   })
 )
+
 //*@desc get each course
 //*@Api GET /api/v1/course/:id
 //*@Access Private
@@ -73,13 +74,18 @@ router.get(
     const course = await CourseModel.findById(req.params.id)
 
     if (course) {
-      res.json(course)
+      res.status(200).json(course)
     } else {
       res.status(404)
       throw new Error('course not Found')
     }
   })
 )
+
+//*@desc put each course
+//*@Api put /api/v1/course/:id
+//*@Access Private
+
 router.put(
   '/course/:id',
   protect,
@@ -130,12 +136,13 @@ router.put(
 )
 
 //*@desc Delete course by admin
-//*@Api GET /api/v1/user/:id
-//*@Access Private
+//*@Api GET /api/v1/course/:id
+//*@Access Admin
 
 router.delete(
   '/course/:id',
   protect,
+  admin,
   asyncHandler(async (req, res) => {
     const course = await CourseModel.findById(req.params.id)
     if (course) {
