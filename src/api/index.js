@@ -3,6 +3,7 @@ import registerApi from './register.js'
 import loginApi from './login.js'
 import courseApi from './course.js'
 import adminApi from './admin.js'
+
 const router = express.Router()
 
 router.use(courseApi)

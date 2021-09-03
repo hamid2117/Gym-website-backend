@@ -6,7 +6,7 @@ const router = express.Router()
 
 //*@desc admin user
 //*@Api GET /api/v1/users
-//*@Access Private
+//*@Access Admin
 
 router.get(
   '/users',
@@ -25,7 +25,7 @@ router.get(
 
 //*@desc Delete user by admin
 //*@Api GET /api/v1/user/:id
-//*@Access Private
+//*@Access Admin
 
 router.delete(
   '/user/:id',
@@ -45,7 +45,7 @@ router.delete(
 
 //*@desc admin user
 //*@Api GET /api/v1/users
-//*@Access Private
+//*@Access Admin
 
 router.get(
   '/user/:id',
@@ -65,7 +65,7 @@ router.get(
 
 //*@desc admin user
 //*@Api Put /api/v1/user/:id/edit
-//*@Access Private
+//*@Access Admin
 
 router.put(
   '/user/:id',

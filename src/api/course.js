@@ -7,7 +7,7 @@ const router = express.Router()
 
 // //*@desc Create a course
 // //*@Api GET /api/v1/course
-// //*@Access Public
+// //*@Access Private
 
 router.post(
   '/course',
@@ -28,32 +28,31 @@ router.post(
       instructordescription,
       lecturelink,
       instructor,
-      address: 'sample Address',
-      charges: '0 rs',
-      contact: '0303030303',
-      endtime: '00:00',
-      starttime: '00:00',
-      gymname: 'Sample Name',
-      location: 'asdfjlk;asdfklj;',
-      maxstudents: '0',
+      address: req.body.address || 'sample Address',
+      charges: req.body.charges || '0 rs',
+      contact: req.body.contact || '0303030303',
+      endtime: req.body.endtime || '00:00',
+      starttime: req.body.starttime || '00:00',
+      gymname: req.body.gymname || 'Sample Name',
+      location: req.body.location || 'asdfjlk;asdfklj;',
+      maxstudents: req.body.maxstudents || '0',
     })
     const createdCourse = await course.save()
     if (createdCourse) {
       res.status(200).json({ message: 'Course is created' })
     } else {
-      res.status(404).json({ message: 'Data failed to update language' })
+      res.status(404).json({ message: 'Course is not create at this moment .' })
     }
   })
 )
 
 // //*@desc Get all courses
 // //*@Api GET /api/v1/courses
-// //*@Access Public
+// //*@Access Private
 
 router.get(
   '/courses',
   protect,
-  admin,
   asyncHandler(async (req, res) => {
     const data = await CourseModel.find()
     if (data) {
@@ -63,14 +62,13 @@ router.get(
     }
   })
 )
-//*@desc admin user
-//*@Api GET /api/v1/users
+//*@desc get each course
+//*@Api GET /api/v1/course/:id
 //*@Access Private
 
 router.get(
   '/course/:id',
   protect,
-  admin,
   asyncHandler(async (req, res) => {
     const course = await CourseModel.findById(req.params.id)
 
@@ -85,7 +83,6 @@ router.get(
 router.put(
   '/course/:id',
   protect,
-  admin,
   asyncHandler(async (req, res) => {
     const course = await CourseModel.findById(req.params.id)
     if (course) {
@@ -139,7 +136,6 @@ router.put(
 router.delete(
   '/course/:id',
   protect,
-  admin,
   asyncHandler(async (req, res) => {
     const course = await CourseModel.findById(req.params.id)
     if (course) {
