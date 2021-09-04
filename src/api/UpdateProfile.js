@@ -19,11 +19,7 @@ router.put(
 
     if (user) {
       user.name = req.body.name || user.name
-      user.email = req.body.email || user.email
-
-      if (req.body.password) {
-        user.password = req.body.password
-      }
+      user.trainer = req.body.trainer
 
       const updatedUser = await user.save()
 
