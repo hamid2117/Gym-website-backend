@@ -3,7 +3,7 @@ import registerApi from './register.js'
 import loginApi from './login.js'
 import courseApi from './course.js'
 import adminApi from './admin.js'
-import UpdateProfileApi from './UpdateProfile'
+import UpdateProfileApi from './UpdateProfile.js'
 
 const router = express.Router()
 
