@@ -1,27 +1,16 @@
 import mongoose from 'mongoose'
 
-const customerSchema = mongoose.Schema(
+const courseSchema = mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
-    address: { type: String },
-    charges: { type: String },
-    contact: { type: String },
-    endtime: { type: String },
-    starttime: { type: String },
     gymname: { type: String },
-    maxstudents: { type: String },
-    location: { type: String },
-    coursetitle: { type: String },
-    lecturelink: { type: String },
-    coursedescription: { type: String },
-    instructor: { type: String }, //id
-    instructordescription: { type: String },
-
-    //   location: { lng: '', lat: '' },
+    address: { type: String },
+    contact: { type: String },
+    location: { type: [Number], default: [0, 0] },
   },
   { timestamps: true }
 )
 
-const Product = mongoose.model('Customer', customerSchema)
+const Product = mongoose.model('Course', courseSchema)
 
 export default Product
