@@ -67,6 +67,24 @@ router.get(
     }
   })
 )
+//*@desc get each course
+//*@Api GET /api/v1/course/:id
+//*@Access Private
+
+router.get(
+  '/courseuser',
+  protect,
+  asyncHandler(async (req, res) => {
+    // const course = await CourseModel.findById(req.params.id)
+    const classes = await ClassModel.find({ user: req.user._id })
+    if (classes) {
+      res.status(200).json(classes)
+    } else {
+      res.status(404)
+      throw new Error('classes not Found')
+    }
+  })
+)
 
 //*@desc put each course
 //*@Api put /api/v1/course/:id
