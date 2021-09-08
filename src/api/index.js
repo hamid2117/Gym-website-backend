@@ -4,9 +4,11 @@ import loginApi from './login.js'
 import courseApi from './course.js'
 import adminApi from './admin.js'
 import UpdateProfileApi from './UpdateProfile.js'
-
+import classesApi from './classes.js'
 const router = express.Router()
 
+router.use(courseApi)
+router.use(classesApi)
 router.use(courseApi)
 router.use(registerApi)
 router.use(loginApi)
