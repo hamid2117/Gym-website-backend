@@ -126,7 +126,7 @@ router.delete(
     const classs = await ClassModel.find({ course: req.params.id })
     if (course) {
       await course.remove()
-      await classs.remove()
+      await classs.deleteMany()
       res.json({ message: 'Course removed' })
     } else {
       res.status(404)
