@@ -57,10 +57,10 @@ router.get(
   '/course/:id',
   protect,
   asyncHandler(async (req, res) => {
-    // const course = await CourseModel.findById(req.params.id)
-    const classes = await ClassModel.find({ course: req.params.id })
-    if (classes) {
-      res.status(200).json(classes)
+    const classs = await CourseModel.findById(req.params.id)
+    // const classes = await ClassModel.find({ course: req.params.id })
+    if (classs) {
+      res.status(200).json(classs)
     } else {
       res.status(404)
       throw new Error('classes not Found')
@@ -75,8 +75,8 @@ router.get(
   '/courseuser',
   protect,
   asyncHandler(async (req, res) => {
-    // const course = await CourseModel.findById(req.params.id)
-    const classes = await ClassModel.find({ user: req.user._id })
+    const classes = await CourseModel.findOne({ user: req.user._id })
+    console.log(classes)
     if (classes) {
       res.status(200).json(classes)
     } else {
