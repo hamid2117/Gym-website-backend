@@ -59,7 +59,7 @@ router.get(
 )
 
 //*@desc get each classes of specific Course
-//*@Api GET /api/v1/course/:id
+//*@Api GET /api/v1/classes/:id
 //*@Access Private
 
 router.get(
