@@ -1,28 +1,31 @@
 import express from 'express'
-import CourseModel from '../models/courseModel.js'
 import WaitingModel from '../models/waitingModel.js'
+import ClassModel from '../models/classesModel.js'
+import UserModel from '../models/userModel.js'
 import asyncHandler from 'express-async-handler'
-import { admin, protect } from './../auth/authMiddleware.js'
+import { protect } from './../auth/authMiddleware.js'
 
 const router = express.Router()
 
-  // //*@desc Create a waitlists
-  // //*@Api POST /api/v1/waitlists/:id  || Course id
-  // //*@Access Private
+// //*@desc Create a waitlist
+// //*@Api POST /api/v1/waitinglist/:id  || Class id
+// //*@Access Private
 
 router.post(
   '/waitinglist/:id',
   protect,
   asyncHandler(async (req, res) => {
-    const course = CourseModel.findById(req.params.id)
+    const classs = await ClassModel.findById(req.params.id)
 
     const waitlist = new WaitingModel({
       user: req.user._id,
-      course: course._id,
+      class: classs._id,
+      classcreater: classs.user,
     })
 
-    const waitlist = await waitlist.save()
-    if (waitlist) {
+    const waitlistsave = await waitlist.save()
+
+    if (waitlistsave) {
       res.status(200).json({ message: 'waitlist is created' })
     } else {
       res
@@ -40,7 +43,10 @@ router.get(
   '/mywaitlist',
   protect,
   asyncHandler(async (req, res) => {
-    const data = await WaitingModel.find({ user: req.user._id })
+    const data = await WaitingModel.find({
+      classcreater: req.user._id,
+    }).populate('user')
+
     if (data) {
       res.status(200).json(data)
     } else {
