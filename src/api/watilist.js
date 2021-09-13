@@ -6,9 +6,9 @@ import { admin, protect } from './../auth/authMiddleware.js'
 
 const router = express.Router()
 
-// //*@desc Create a waitlists
-// //*@Api GET /api/v1/waitlists
-// //*@Access Private
+  // //*@desc Create a waitlists
+  // //*@Api POST /api/v1/waitlists/:id  || Course id
+  // //*@Access Private
 
 router.post(
   '/waitinglist/:id',
@@ -48,8 +48,8 @@ router.get(
     }
   })
 )
-// //*@desc Get all courses
-// //*@Api GET /api/v1/courses
+// //*@desc Get all Single waitlist
+// //*@Api GET /api/v1/waitlist/:id
 // //*@Access Private
 
 router.get(
@@ -75,7 +75,7 @@ router.put(
   asyncHandler(async (req, res) => {
     const waitlists = await WaitingModel.findById(req.params.id)
     if (waitlists) {
-      waitlists.approve = req.body.approve || waitlists.approve
+      waitlists.approve = req.body.approve
       const updatedCourse = await waitlists.save()
 
       res.status(200).json({
@@ -89,9 +89,9 @@ router.put(
   })
 )
 
-//*@desc Delete course
-//*@Api GET /api/v1/course/:id
-//*@Access Admin
+//*@desc Delete waitlist
+//*@Api GET /api/v1/wait/:id
+//*@Access Private
 
 router.delete(
   '/waitlist/:id',

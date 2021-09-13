@@ -109,6 +109,8 @@ router.put(
       classes.lecturelink = req.body.lecturelink || classes.lecturelink
       classes.maxstudents = req.body.maxstudents || classes.maxstudents
       classes.timepayment = req.body.timepayment || classes.timepayment
+      classes.total_students_enrolled =
+        req.body.total_students_enrolled || classes.total_students_enrolled
       classes.couresdescription =
         req.body.couresdescription || classes.couresdescription
       const updatedCourse = await classes.save()
