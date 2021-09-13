@@ -14,7 +14,7 @@ const classSchema = mongoose.Schema(
     coursedescription: { type: String },
     maxstudents: { type: String },
     timepayment: { type: String },
-    total_students_enrolled: { type: String },
+    total_students_enrolled: { type: Number, required: true, default: 0 },
   },
   {
     timestamps: true,
